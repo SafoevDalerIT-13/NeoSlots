@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-create-companies
+      author: safoev
+      changes:
+        - createTable:
+            tableName: companies
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  defaultValueComputed: gen_random_uuid()
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: slug
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: address
+                  type: TEXT
+              - column:
+                  name: phone
+                  type: VARCHAR(20)
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  name: timezone
+                  type: VARCHAR(100)
+              - column:
+                  name: settings
+                  type: JSONB
+              - column:
+                  name: created_at
+                  type: TIMESTAMP

@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - changeSet:
+      id: 008-create-schedule-exceptions
+      author: safoev
+      changes:
+        - createTable:
+            tableName: schedule_exceptions
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  defaultValueComputed: gen_random_uuid()
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: master_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+              - column:
+                  name: exception_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_available
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false
+              - column:
+                  name: start_time
+                  type: TIME
+              - column:
+                  name: end_time
+                  type: TIME
+              - column:
+                  name: reason
+                  type: VARCHAR(255)
+        - addForeignKeyConstraint:
+            baseTableName: schedule_exceptions
+            baseColumnNames: master_id
+            referencedTableName: masters
+            referencedColumnNames: id
+            constraintName: fk_schedule_exceptions_master

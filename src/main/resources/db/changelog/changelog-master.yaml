@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - include:
+      file: classpath:db/changelog/changesets/001-create-sequences.yaml
+  - include:
+      file: classpath:db/changelog/changesets/002-create-companies.yaml
+  - include:
+      file: classpath:db/changelog/changesets/003-create-users.yaml
+  - include:
+      file: classpath:db/changelog/changesets/004-create-services.yaml
+  - include:
+      file: classpath:db/changelog/changesets/005-create-masters.yaml
+  - include:
+      file: classpath:db/changelog/changesets/006-create-master-services.yaml
+  - include:
+      file: classpath:db/changelog/changesets/007-create-schedule-templates.yaml
+  - include:
+      file: classpath:db/changelog/changesets/008-create-schedule-exceptions.yaml
+  - include:
+      file: classpath:db/changelog/changesets/009-create-appointments.yaml
+  - include:
+      file: classpath:db/changelog/changesets/010-create-reminders.yaml
