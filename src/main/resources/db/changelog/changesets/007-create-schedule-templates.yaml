@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - changeSet:
+      id: 007-create-schedule-templates
+      author: safoev
+      changes:
+        - createTable:
+            tableName: schedule_templates
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  defaultValueComputed: gen_random_uuid()
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: master_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+              - column:
+                  name: day_of_week
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: start_time
+                  type: TIME
+                  constraints:
+                    nullable: false
+              - column:
+                  name: end_time
+                  type: TIME
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_active
+                  type: BOOLEAN
+                  defaultValueBoolean: true
+        - addForeignKeyConstraint:
+            baseTableName: schedule_templates
+            baseColumnNames: master_id
+            referencedTableName: masters
+            referencedColumnNames: id
+            constraintName: fk_schedule_templates_master

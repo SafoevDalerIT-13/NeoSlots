@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: 006-create-master-services
+      author: safoev
+      changes:
+        - createTable:
+            tableName: master_services
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  defaultValueComputed: gen_random_uuid()
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: master_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+              - column:
+                  name: service_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: DECIMAL(10, 2)
+              - column:
+                  name: duration_minutes
+                  type: INTEGER
+        - addForeignKeyConstraint:
+            baseTableName: master_services
+            baseColumnNames: master_id
+            referencedTableName: masters
+            referencedColumnNames: id
+            constraintName: fk_master_services_master
+        - addForeignKeyConstraint:
+            baseTableName: master_services
+            baseColumnNames: service_id
+            referencedTableName: services
+            referencedColumnNames: id
+            constraintName: fk_master_services_service
+        - addUniqueConstraint:
+            tableName: master_services
+            columnNames: master_id, service_id
+            constraintName: uq_master_services
