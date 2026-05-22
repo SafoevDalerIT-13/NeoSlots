@@ -19,12 +19,6 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: slug
-                  type: VARCHAR(255)
-                  constraints:
-                    nullable: false
-                    unique: true
-              - column:
                   name: address
                   type: TEXT
               - column:
@@ -33,9 +27,6 @@ databaseChangeLog:
               - column:
                   name: email
                   type: VARCHAR(255)
-              - column:
-                  name: timezone
-                  type: VARCHAR(100)
               - column:
                   name: settings
                   type: JSONB

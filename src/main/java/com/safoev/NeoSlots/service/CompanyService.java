@@ -34,11 +34,9 @@ public class CompanyService {
     public CompanyResponse create(CompanyRequest request) {
         var company = new Company();
         company.setName(request.name());
-        company.setSlug(request.slug());
         company.setAddress(request.address());
         company.setPhone(request.phone());
         company.setEmail(request.email());
-        company.setTimezone(request.timezone());
         return toResponse(repository.save(company));
     }
 
@@ -47,11 +45,9 @@ public class CompanyService {
         var company = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Компания", id));
         company.setName(request.name());
-        company.setSlug(request.slug());
         company.setAddress(request.address());
         company.setPhone(request.phone());
         company.setEmail(request.email());
-        company.setTimezone(request.timezone());
         return toResponse(repository.save(company));
     }
 
@@ -65,8 +61,8 @@ public class CompanyService {
 
     private CompanyResponse toResponse(Company c) {
         return new CompanyResponse(
-                c.getId(), c.getName(), c.getSlug(), c.getAddress(),
-                c.getPhone(), c.getEmail(), c.getTimezone(),
+                c.getId(), c.getName(), c.getAddress(),
+                c.getPhone(), c.getEmail(),
                 c.getSettings(), c.getCreatedAt());
     }
 }

@@ -7,11 +7,9 @@ import java.util.UUID;
 public record CompanyResponse(
         UUID id,
         String name,
-        String slug,
         String address,
         String phone,
         String email,
-        String timezone,
         Map<String, Object> settings,
         LocalDateTime createdAt
 ) {}

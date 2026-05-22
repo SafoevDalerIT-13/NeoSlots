@@ -19,5 +19,13 @@ spring:
     change-log: classpath:db/changelog/changelog-master.yaml
     drop-first: false
 
+app:
+  auth-service:
+    url: http://localhost:8081
+  security:
+    jwt:
+      secret-key: ${JWT_SECRET_KEY:tQGRxTiCqvPrtCUo25YIio2ilZOY0/hFdIM1fSfqqBo=}
+      access-exp-ms: 900000
+
 server:
   port: 8080
